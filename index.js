@@ -20,11 +20,18 @@ let renderQuotes = (quote) => {
     likes.innerText  = '0';
     likeBtn.innerText = `♥️ ${likeCount}`;
 
+    li.addEventListener('mouseover', (e) => {
+        li.classList.add("bg-warning")
+    })
+
+    li.addEventListener('mouseout', (e) => {
+        li.classList.remove("bg-warning")
+    })
+
     likeBtn.addEventListener('click', () => {
         let newLikes = parseInt(likeCount += 1)
         likeBtn.innerText = `♥️ ${newLikes}`;
     })
-
 
     list.append(li)
     li.append(characterQuote)
@@ -45,18 +52,24 @@ form.addEventListener('submit', (e) => {
         renderQuotes(quote)
     }))
     .catch(error => {
+        let image = document.createElement('img')
+        image.src = "./assets/confused.png"
+        list.append(image)
         alert('There was a typo in your search! Try again!')
         throw(error)
     })
     
-    let quoteColors = document.getElementsByClassName('.list-group-item')
-    
-    quoteColors.addEventListener('mouseover', function(e){
-        e.target.quoteColors.class = "bg-warning"
-        
-    })
     
 })
+
+// catch - we are creating img elem to append list to img in assest tab
+// scr assests
+
+//***** image code v
+// let li = document.createElement('li')
+//         let image = document.createElement('img')
+//         image.src = ".file/assets/10-107139_confused-anime-girl-png-transparent-png"
+//         li.append(image)
 
 // fetch('https://animechan.vercel.app/api/available/anime')
 //       .then(response => response.json())
