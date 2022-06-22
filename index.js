@@ -5,18 +5,37 @@ fetch('https://animechan.vercel.app/api/quotes')
         }))
 
 let renderQuotes = (quote) => {
+    let likeBtn = document.createElement('button')
+    let likes = document.createElement('div')
     let list = document.getElementById('quote-list')
     let li = document.createElement('li')
     let characterQuote = document.createElement('p')
     let character = document.createElement('p')
+    let likeCount = 0;
+
     
     li.classList.add("list-group-item")
     characterQuote.innerText = quote.quote;
     character.innerText = `- ${quote.character}`;
+    likes.innerText  = '0';
+    likeBtn.innerText = `♥️ ${likeCount}`;
+
+    likeBtn.addEventListener('click', () => {
+        let newLikes = parseInt(likeCount += 1)
+        likeBtn.innerText = `♥️ ${newLikes}`;
+    })
+
+    // let quoteColors = document.querySelector('.list-group-item')
+    
+    // quoteColors.addEventListener('mouseover', function(e){
+    //     e.target.quoteColors.class = "bg-warning"
+    // })
+
 
     list.append(li)
     li.append(characterQuote)
     li.append(character)
+    li.append(likeBtn)
 }
 
 let form = document.getElementById('search-anime')
@@ -39,9 +58,9 @@ form.addEventListener('submit', (e) => {
     
 })
 
-// fetch('https://animechan.vercel.app/api/available/anime')
-//       .then(response => response.json())
-//       .then(anime => console.log(anime))
+fetch('https://animechan.vercel.app/api/available/anime')
+      .then(response => response.json())
+      .then(anime => console.log(anime))
 
 // fetch('https://cdn.animenewsnetwork.com/encyclopedia/api.xml?title=4658')
 // .then(res => res.json())
