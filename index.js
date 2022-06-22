@@ -20,17 +20,18 @@ let renderQuotes = (quote) => {
     likes.innerText  = '0';
     likeBtn.innerText = `♥️ ${likeCount}`;
 
+    li.addEventListener('mouseover', (e) => {
+        li.classList.add("bg-warning")
+    })
+
+    li.addEventListener('mouseout', (e) => {
+        li.classList.remove("bg-warning")
+    })
+
     likeBtn.addEventListener('click', () => {
         let newLikes = parseInt(likeCount += 1)
         likeBtn.innerText = `♥️ ${newLikes}`;
     })
-
-    // let quoteColors = document.querySelector('.list-group-item')
-    
-    // quoteColors.addEventListener('mouseover', function(e){
-    //     e.target.quoteColors.class = "bg-warning"
-    // })
-
 
     list.append(li)
     li.append(characterQuote)
@@ -58,9 +59,15 @@ form.addEventListener('submit', (e) => {
     
 })
 
-fetch('https://animechan.vercel.app/api/available/anime')
-      .then(response => response.json())
-      .then(anime => console.log(anime))
+// let quoteColors = document.getElementsByClassName('.list-group-item')
+// console.log(quoteColors['li'])
+// quoteColors.addEventListener('mouseover', function(e){
+//    quoteColors.classList.add = "bg-warning"
+// })
+
+// fetch('https://animechan.vercel.app/api/available/anime')
+//       .then(response => response.json())
+//       .then(anime => console.log(anime))
 
 // fetch('https://cdn.animenewsnetwork.com/encyclopedia/api.xml?title=4658')
 // .then(res => res.json())
